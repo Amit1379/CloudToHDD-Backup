@@ -9,9 +9,11 @@ import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 
+from .paths import scripts_dir
+
 logger = logging.getLogger("cloudtohdd.iphone_usb")
 
-_SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
+_SCRIPTS_DIR = scripts_dir()
 _DETECT_SCRIPT = _SCRIPTS_DIR / "detect_iphone.ps1"
 _COPY_SCRIPT = _SCRIPTS_DIR / "copy_iphone_dcim.ps1"
 

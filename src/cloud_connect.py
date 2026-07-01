@@ -14,6 +14,7 @@ from typing import Callable
 
 import yaml
 
+from .paths import config_path
 from .utils import (
     detect_google_drive_folder,
     detect_icloud_folder,
@@ -483,7 +484,7 @@ def set_config_path(path: Path | str) -> None:
 def _config_path() -> Path:
     if _active_config_path is not None:
         return _active_config_path
-    return Path(__file__).resolve().parents[1] / "config.yaml"
+    return config_path()
 
 
 def _load_config() -> dict:

@@ -13,7 +13,9 @@ from .iphone_usb import copy_mtp_tree, is_mtp_path, list_mtp_files
 
 logger = logging.getLogger("cloudtohdd.android_usb")
 
-_SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
+from .paths import scripts_dir
+
+_SCRIPTS_DIR = scripts_dir()
 _DETECT_SCRIPT = _SCRIPTS_DIR / "detect_android.ps1"
 
 

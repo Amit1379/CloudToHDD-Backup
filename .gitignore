@@ -43,5 +43,6 @@ desktop.ini
 .vscode/
 *.swp
 
-# Backup manifests (created at destination, not in source repo)
-.manifests/
+# Build output
+dist/
+build/cloudtohdd/

@@ -43,9 +43,11 @@ from src.utils import (
     resolve_writable_root,
 )
 
-ROOT = Path(__file__).resolve().parents[2]
-CONFIG_PATH = ROOT / "config.yaml"
-EXAMPLE_CONFIG = ROOT / "config.example.yaml"
+from src.paths import app_root, config_path, ensure_app_config, example_config_path
+
+ROOT = app_root()
+CONFIG_PATH = config_path()
+EXAMPLE_CONFIG = example_config_path()
 
 PROVIDER_INFO = {
     "iphone": ("iPhone (USB)", "01_iPhone", "Connect via USB, tap Trust"),
@@ -92,8 +94,7 @@ class CloudToHDDApp(ctk.CTk):
             finalize_rclone_connection(key)
 
     def _ensure_config(self) -> None:
-        if not CONFIG_PATH.exists() and EXAMPLE_CONFIG.exists():
-            CONFIG_PATH.write_text(EXAMPLE_CONFIG.read_text(encoding="utf-8"), encoding="utf-8")
+        ensure_app_config()
 
     def _load_config(self) -> dict:
         if CONFIG_PATH.exists():

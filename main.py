@@ -47,11 +47,12 @@ from src.cloud_connect import (
 )
 
 from src.wizard import run_wizard
+from src.paths import app_root, config_path, ensure_app_config, example_config_path
 
 console = Console()
-ROOT = Path(__file__).resolve().parent
-DEFAULT_CONFIG = ROOT / "config.yaml"
-EXAMPLE_CONFIG = ROOT / "config.example.yaml"
+ROOT = app_root()
+DEFAULT_CONFIG = config_path()
+EXAMPLE_CONFIG = example_config_path()
 
 ALL_PROVIDERS = [
     "iphone",

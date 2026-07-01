@@ -16,7 +16,29 @@
 - **Progress bars** — live status during copy and verification
 - **Audit reports** — JSON logs in `reports/` folder
 
-## Easiest Way (Double-Click)
+## Download & run (no Python required)
+
+1. Download **`CloudToHDD-Backup.zip`** from the [Releases](https://github.com/your-username/CloudToHDD-Backup/releases) page (or from `dist/` after building).
+2. Unzip to any folder (e.g. `C:\CloudToHDD-Backup`).
+3. Double-click **`CloudToHDD-Backup.exe`**.
+4. On first run, `config.yaml` is created automatically — set your backup destination (external HDD).
+5. Connect phones/cloud, then click **Run Backup**.
+
+**Notes for the standalone app:**
+- Windows 10/11 only
+- No Python install needed
+- [rclone](https://rclone.org/) is optional (for full Google Drive / iCloud download)
+- Keep the whole unzipped folder together (do not move only the `.exe`)
+
+### Build the exe yourself
+
+```powershell
+powershell -ExecutionPolicy Bypass -File build\build_exe.ps1
+```
+
+Output: `dist\CloudToHDD-Backup\CloudToHDD-Backup.exe` and `dist\CloudToHDD-Backup.zip`
+
+## Easiest Way (from source — Windows)
 
 | File | What it does |
 |------|--------------|
