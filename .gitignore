@@ -1,0 +1,47 @@
+# Local / user-specific
+config.yaml
+.env
+*.local.yaml
+
+# Windows launchers (kept locally, not in repo)
+*.bat
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Tests & tooling
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+..test_*
+.test_*
+
+# Logs & runtime
+logs/
+*.log
+*.partial
+
+# Secrets & cloud config
+rclone.conf
+.rclone.conf
+credentials.json
+token.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# Backup manifests (created at destination, not in source repo)
+.manifests/

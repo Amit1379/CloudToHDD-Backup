@@ -1,0 +1,100 @@
+# CloudToHDD Backup — Photo Backup from Cloud to Local HDD
+# Folder layout: D:\CloudToHDD_Backup\01_iPhone ... 09_Final_Archive
+
+backup:
+  destination_root: "D:\\CloudToHDD_Backup"
+  layout: digital_archive
+  mode: copy
+  verify_checksums: true
+  incremental: true
+  max_retries: 3
+  bandwidth_limit_kbps: 0
+  dry_run: false
+  require_100_percent: true
+  block_unavailable_sources: false
+  verification_rounds: 3
+  use_robocopy: true
+  disk_space_margin: 2.0
+  preserve_metadata:
+    enabled: true
+    level: full
+    verify_timestamps: true
+    timestamp_tolerance_seconds: 2.0
+    verify_gps: true
+    gps_tolerance_meters: 50.0
+    require_gps_preserved: true
+
+safety:
+  detect_cloud_placeholders: true
+  sample_read_count: 20
+  auto_certify_after_backup: true
+
+logging:
+  level: INFO
+  log_dir: ./logs
+  keep_days: 30
+
+security:
+  encrypt_rclone_config: true
+
+providers:
+  iphone:
+    enabled: false
+    usb_path: ""
+    exclude_patterns:
+      - "*.tmp"
+      - ".DS_Store"
+  android:
+    enabled: false
+    usb_path: ""
+    copy_folders:
+      - DCIM
+      - Pictures
+      - Download
+      - Downloads
+      - WhatsApp/Media/WhatsApp Images
+      - WhatsApp/Media/WhatsApp Video
+      - Camera
+    exclude_patterns:
+      - "*.tmp"
+      - .thumb
+  google_photos:
+    enabled: false
+    method: takeout
+    takeout_download_folder: "D:\\CloudToHDD_Backup\\03_GooglePhotos\\_downloads"
+    auto_extract: true
+    rclone_remote: gphotos
+    exclude_patterns:
+      - "*.tmp"
+  google_drive:
+    enabled: false
+    method: auto
+    sync_folder: ""
+    rclone_remote: gdrive
+    takeout_download_folder: ""
+    include_paths: []
+    exclude_patterns:
+      - "*.tmp"
+      - ".DS_Store"
+      - Thumbs.db
+  onedrive:
+    enabled: false
+    method: auto
+    sync_folder: ""
+    rclone_remote: onedrive
+    include_paths: []
+    exclude_patterns:
+      - "*.tmp"
+      - "~$*"
+      - ".DS_Store"
+      - Thumbs.db
+      - desktop.ini
+  icloud:
+    enabled: false
+    method: auto
+    sync_folder: ""
+    rclone_remote: icloud
+    include_paths: []
+    exclude_patterns:
+      - "*.tmp"
+      - ".DS_Store"
