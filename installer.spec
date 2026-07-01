@@ -1,38 +1,27 @@
 # -*- mode: python ; coding: utf-8 -*-
-"""PyInstaller spec — single-file CloudToHDD Backup GUI."""
+"""PyInstaller spec — CloudToHDD Backup Setup (installer with shortcuts)."""
 
 from pathlib import Path
-
-from PyInstaller.utils.hooks import collect_all
 
 block_cipher = None
 project_root = Path(SPECPATH)
 
+# Built after cloudtohdd.spec — app exe must exist in dist/
+app_exe = project_root / "dist" / "CloudToHDD-Backup.exe"
+if not app_exe.is_file():
+    raise SystemExit(f"Build the app first: dist/CloudToHDD-Backup.exe not found ({app_exe})")
+
 datas = [
+    (str(app_exe), "."),
     (str(project_root / "config.example.yaml"), "."),
-    (str(project_root / "scripts"), "scripts"),
-]
-
-ctk_datas, ctk_binaries, ctk_hiddenimports = collect_all("customtkinter")
-
-hiddenimports = list(ctk_hiddenimports) + [
-    "PIL._tkinter_finder",
-    "pillow_heif",
-    "yaml",
-    "openpyxl",
-    "click",
-    "rich",
-    "rich.logging",
-    "cryptography",
-    "watchdog",
 ]
 
 a = Analysis(
-    ["gui.py"],
+    ["installer/installer.py"],
     pathex=[str(project_root)],
-    binaries=ctk_binaries,
-    datas=datas + ctk_datas,
-    hiddenimports=hiddenimports,
+    binaries=[],
+    datas=datas,
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -52,7 +41,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name="CloudToHDD-Backup",
+    name="CloudToHDD-Backup-Setup",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

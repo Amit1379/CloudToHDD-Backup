@@ -18,25 +18,26 @@
 
 ## Download & run (no Python required)
 
-1. Download **`CloudToHDD-Backup.zip`** from the [Releases](https://github.com/your-username/CloudToHDD-Backup/releases) page (or from `dist/` after building).
-2. Unzip to any folder (e.g. `C:\CloudToHDD-Backup`).
-3. Double-click **`CloudToHDD-Backup.exe`**.
-4. On first run, `config.yaml` is created automatically — set your backup destination (external HDD).
-5. Connect phones/cloud, then click **Run Backup**.
+Two standalone `.exe` files are built into `dist\` (rebuild with `scripts\build_exe.ps1`):
 
-**Notes for the standalone app:**
+| File | Use when |
+|------|----------|
+| **`CloudToHDD-Backup.exe`** | Portable — one file, double-click to run. `config.yaml` is created next to the exe. |
+| **`CloudToHDD-Backup-Setup.exe`** | Install — copies app to `%LOCALAPPDATA%\CloudToHDD Backup` and adds **Desktop + Start Menu** shortcuts. |
+
+**Notes:**
 - Windows 10/11 only
 - No Python install needed
+- First launch may take a few seconds (app unpacks internally)
 - [rclone](https://rclone.org/) is optional (for full Google Drive / iCloud download)
-- Keep the whole unzipped folder together (do not move only the `.exe`)
 
 ### Build the exe yourself
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File build\build_exe.ps1
+powershell -ExecutionPolicy Bypass -File scripts\build_exe.ps1
 ```
 
-Output: `dist\CloudToHDD-Backup\CloudToHDD-Backup.exe` and `dist\CloudToHDD-Backup.zip`
+Output: `dist\CloudToHDD-Backup.exe` and `dist\CloudToHDD-Backup-Setup.exe`
 
 ## Easiest Way (from source — Windows)
 
