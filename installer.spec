@@ -14,6 +14,8 @@ if not app_exe.is_file():
 datas = [
     (str(app_exe), "."),
     (str(project_root / "config.example.yaml"), "."),
+    (str(project_root / "assets" / "cloudtohdd.ico"), "."),
+    (str(project_root / "assets" / "cloudtohdd-icon.png"), "."),
 ]
 
 a = Analysis(
@@ -54,4 +56,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=str(project_root / "assets" / "cloudtohdd.ico"),
 )

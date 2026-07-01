@@ -51,3 +51,36 @@ def ensure_app_config() -> Path:
     if example.is_file():
         dest.write_text(example.read_text(encoding="utf-8"), encoding="utf-8")
     return dest
+
+
+def app_icon_ico() -> Path | None:
+    """Windows .ico for window, taskbar, and shortcuts."""
+    for candidate in (
+        app_root() / "cloudtohdd.ico",
+        bundle_root() / "cloudtohdd.ico",
+    ):
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def app_icon_png() -> Path | None:
+    """PNG icon for in-app branding."""
+    for candidate in (
+        app_root() / "cloudtohdd-icon.png",
+        bundle_root() / "cloudtohdd-icon.png",
+    ):
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def apply_window_icon(window) -> None:
+    """Set taskbar / title-bar icon on a Tk or CTk window."""
+    ico = app_icon_ico()
+    if not ico:
+        return
+    try:
+        window.iconbitmap(default=str(ico))
+    except Exception:
+        pass

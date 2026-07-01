@@ -7,10 +7,13 @@ from PyInstaller.utils.hooks import collect_all
 
 block_cipher = None
 project_root = Path(SPECPATH)
+icon_file = str(project_root / "assets" / "cloudtohdd.ico")
 
 datas = [
     (str(project_root / "config.example.yaml"), "."),
     (str(project_root / "scripts"), "scripts"),
+    (str(project_root / "assets" / "cloudtohdd.ico"), "."),
+    (str(project_root / "assets" / "cloudtohdd-icon.png"), "."),
 ]
 
 ctk_datas, ctk_binaries, ctk_hiddenimports = collect_all("customtkinter")
@@ -65,4 +68,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=icon_file,
 )

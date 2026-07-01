@@ -17,6 +17,7 @@ from src.cloud_connect import (
     launch_rclone_sign_in,
     launch_rclone_sign_in_legacy_console,
 )
+from src.paths import apply_window_icon
 
 
 class CloudConnectDialog(ctk.CTkToplevel):
@@ -26,6 +27,7 @@ class CloudConnectDialog(ctk.CTkToplevel):
         self.title("Connect Cloud Accounts")
         self.geometry("620x520")
         self.minsize(520, 400)
+        apply_window_icon(self)
         self.transient(master)
         self.grab_set()
 

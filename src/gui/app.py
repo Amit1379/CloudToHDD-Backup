@@ -43,7 +43,7 @@ from src.utils import (
     resolve_writable_root,
 )
 
-from src.paths import app_root, config_path, ensure_app_config, example_config_path
+from src.paths import app_root, app_icon_png, apply_window_icon, config_path, ensure_app_config, example_config_path
 
 ROOT = app_root()
 CONFIG_PATH = config_path()
@@ -76,6 +76,7 @@ class CloudToHDDApp(ctk.CTk):
         self.title("CloudToHDD Backup")
         self.geometry("1100x720")
         self.minsize(900, 600)
+        apply_window_icon(self)
 
         self.log_queue: queue.Queue[str] = queue.Queue()
         self._busy = False
@@ -117,11 +118,19 @@ class CloudToHDDApp(ctk.CTk):
         sidebar.grid(row=0, column=0, sticky="nsew")
         sidebar.grid_rowconfigure(15, weight=1)
 
+        header = ctk.CTkFrame(sidebar, fg_color="transparent")
+        header.grid(row=0, column=0, padx=12, pady=(20, 4), sticky="w")
+        icon_png = app_icon_png()
+        if icon_png:
+            from PIL import Image
+
+            logo = ctk.CTkImage(Image.open(icon_png), size=(36, 36))
+            ctk.CTkLabel(header, image=logo, text="").pack(side="left", padx=(4, 10))
         ctk.CTkLabel(
-            sidebar,
+            header,
             text="CloudToHDD",
             font=ctk.CTkFont(size=22, weight="bold"),
-        ).grid(row=0, column=0, padx=16, pady=(20, 4), sticky="w")
+        ).pack(side="left")
 
         ctk.CTkLabel(
             sidebar,
