@@ -18,7 +18,7 @@
 
 ## Download & run (no Python required)
 
-Two standalone `.exe` files are built into `dist\` (rebuild with `scripts\build_exe.ps1`):
+Download from **[GitHub Releases](https://github.com/Amit1379/CloudToHDD-Backup/releases/latest)**:
 
 | File | Use when |
 |------|----------|
